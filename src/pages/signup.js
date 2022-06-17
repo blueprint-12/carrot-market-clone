@@ -1,9 +1,7 @@
-// import React from "react"
+import React from "react";
 
-// const SignUp = ()=> {
-//     return null; 
-// }
-    
+const SignUp = () => {
+  return null;
+};
 
-
-// export default SignUp;
+export default SignUp;
