@@ -13,4 +13,4 @@ axios 패키지 설치
 yarn add axios
 
 mock api(post man) 사용시 패키지 설치
-json server 
+json-server 
