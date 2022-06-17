@@ -1,11 +1,7 @@
-// import React from "react"
-// import PostingForm from "../components/postingform";
-// const PostEdit = ()=> { 
-//     return (
-//         <PostingForm/>
-//     )
-// }
-    
+import React from "react";
+import PostingForm from "../components/PostingForm";
+const PostEdit = () => {
+  return <PostingForm />;
+};
 
-
-// export default PostEdit;
+export default PostEdit;

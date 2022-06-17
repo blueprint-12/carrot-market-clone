@@ -1,9 +1,7 @@
-// import React from "react"
+import React from "react";
 
-// const PostingForm = ()=> {
-//     return null; 
-// }
-    
+const PostingForm = () => {
+  return <div></div>;
+};
 
-
-// export default PostingForm;
+export default PostingForm;

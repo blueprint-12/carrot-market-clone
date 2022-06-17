@@ -1,40 +1,32 @@
-import React from 'react';
-import {Routes, Route} from "react-router-dom";
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
 
 //components
-import Header from "../components/header";
+import Header from "../components/Header";
 // pages
-import Detail from '../pages/detail';
-import Main from "../pages/main";
-import Login from "../pages/login";
-import PostEdit from "../pages/postedit";
-import PostWrite from "../pages/postwrite";
-import SignUp from "../pages/signup";
-
-
-
-
-
+import Detail from "../pages/Detail";
+import Main from "../pages/Main";
+import Login from "../pages/Login";
+import PostEdit from "../pages/PostEdit";
+import PostWrite from "../pages/PostWrite";
+import SignUp from "../pages/SignUp";
 
 function App() {
-  return ( 
+  return (
     <div className="App">
-      <Header/>
+      <Header />
       <p>hi</p>
       <Routes>
-        <Route path="/" element={<Login/>}/> 
-        <Route path="/signup" element={<SignUp/>}/> 
-        <Route path="/main"  element={<Main/>} /> 
-        <Route path="/write" element={<PostWrite/>}/>
-        <Route path="/detail/:postId" element={<Detail/>}/>          
-        <Route path="/post/edit/:postId" element={<PostEdit/>}/> 
-        
-        
-        
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/write" element={<PostWrite />} />
+        <Route path="/detail/:postId" element={<Detail />} />
+        <Route path="/post/edit/:postId" element={<PostEdit />} />
       </Routes>
     </div>
-  )
+  );
 }
 
 export default App;

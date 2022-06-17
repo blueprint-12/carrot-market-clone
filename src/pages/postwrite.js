@@ -1,11 +1,7 @@
-// import React from "react"
-// import PostingForm from "../components/Postingform";
-// const PostWrite = ()=> {
-//     return (
-//         <PostingForm/>
-//     )
-// }
-    
+import React from "react";
+import PostingForm from "../components/PostingForm";
+const PostWrite = () => {
+  return <PostingForm />;
+};
 
-
-// export default PostWrite;
+export default PostWrite;
