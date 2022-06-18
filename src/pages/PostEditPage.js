@@ -1,7 +1,7 @@
 import React from "react";
 
-const PostEdit = () => {
+const PostEditPage = () => {
   return <div></div>;
 };
 
-export default PostEdit;
+export default PostEditPage;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const PostWrite = () => {
+const PostWritePage = () => {
   return (
     <WriteForm>
       <Nav>
@@ -127,4 +127,4 @@ const Hr = styled.hr`
   color: lightgray;
 `;
 
-export default PostWrite;
+export default PostWritePage;
