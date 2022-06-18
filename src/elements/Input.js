@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+<<<<<<< HEAD
+import { Text } from "./index";
+=======
 import Text from "./Text";
+>>>>>>> d56869bf35980bf0cc9729effb220aea36d23c73
 
 const Input = (props) => {
   const {
@@ -40,7 +44,11 @@ const Input = (props) => {
 Input.defaultProps = {
   label: false,
   type: "text",
+<<<<<<< HEAD
+  placeholder: "텍스트를 입력하시오.",
+=======
   placeholder: "텍스트를 입력하세요.",
+>>>>>>> d56869bf35980bf0cc9729effb220aea36d23c73
   _onChange: () => {},
   // width: "45%",
   // height: "4%",
@@ -54,11 +62,19 @@ const ElInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 3px;
   outline: none;
+<<<<<<< HEAD
+
+=======
+>>>>>>> d56869bf35980bf0cc9729effb220aea36d23c73
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   ${(props) => (props.display ? `display: ${props.display}` : "")};
   margin: ${(props) => (props.margin ? `${props.margin}` : "8px 8px")};
   padding: ${(props) => (props.padding ? `${props.padding};` : "16px 16px;")};
+<<<<<<< HEAD
+
+=======
+>>>>>>> d56869bf35980bf0cc9729effb220aea36d23c73
   &::placeholder {
     color: #bbb;
     font-size: 14px;
@@ -69,4 +85,8 @@ const ElInput = styled.input`
   }
 `;
 
+<<<<<<< HEAD
 export default Input;
+=======
+export default Input;
+>>>>>>> d56869bf35980bf0cc9729effb220aea36d23c73
