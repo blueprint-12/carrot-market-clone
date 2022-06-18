@@ -12,8 +12,8 @@ import PostEditPage from "../pages/PostEditPage";
 import PostWritePage from "../pages/PostWritePage";
 import SignUpPage from "../pages/SignUpPage";
 
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 // import { actionCreators as userActions } from "../redux/modules/user";
 // import { actionCreators as postActions } from "../redux/modules/post";
 import { useEffect } from "react";
