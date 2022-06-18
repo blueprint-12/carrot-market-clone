@@ -72,7 +72,7 @@ const Main = () => {
             right: "10%",
           }}
           onClick={() => {
-            navigate("/wirte");
+            navigate("/write");
           }}
         >
           <AddIcon />

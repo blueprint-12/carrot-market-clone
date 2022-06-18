@@ -26,7 +26,7 @@ const PostWrite = () => {
             
 
         </ImageUpload>
-        <DetailWrite>
+        <DetailWrap>
           <Input1 height="10%" placeholder="글 제목"/>
           <Input1 as="select" height="10%" name="category" id="category" style={{padding: "0 10px"}}>
             <option value="none">카테고리 선택</option>
@@ -46,8 +46,10 @@ const PostWrite = () => {
                 <option value="기타">기타 중고물품</option>
                 <option value="삽니다">삽니다</option>
           </Input1>
-          <Input1 height="10%" placeholder="판매 가격"/>          
-        </DetailWrite>
+          <Input1 height="10%" placeholder="판매 가격" style={{float: "right"}}/>
+
+        </DetailWrap>
+        
         
       </WriteBody>
         
@@ -123,7 +125,7 @@ const Image1 = styled.img`
   margin: 0px 0px 5px 5px;
 
 `
-const DetailWrite = styled.div`
+const DetailWrap = styled.div`
 
   width: 100%;
   height: 100%;

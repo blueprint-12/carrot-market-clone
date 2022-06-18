@@ -35,8 +35,4 @@ const P = styled.p`
   box-sizing: border-box;
 `;
 
-<<<<<<< HEAD
 export default Text;
-=======
-export default Text;
->>>>>>> d56869bf35980bf0cc9729effb220aea36d23c73
