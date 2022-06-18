@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 //components
-import Header from "../components/Header";
+
 // pages
 import Detail from "../pages/Detail";
 import Main from "../pages/Main";
@@ -15,8 +15,8 @@ import SignUp from "../pages/SignUp";
 function App() {
   return (
     <div className="App">
-      <Header />
-      <p>hi</p>
+      
+      
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />

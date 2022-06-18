@@ -1,7 +1,6 @@
 import React from "react";
-import PostingForm from "../components/PostingForm";
 const PostEdit = () => {
-  return <PostingForm />;
+  return <div>joi</div>;
 };
 
 export default PostEdit;
