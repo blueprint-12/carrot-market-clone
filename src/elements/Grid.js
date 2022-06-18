@@ -20,6 +20,7 @@ const Grid = (props) => {
     space_between,
     space_around,
     center,
+    flex_end,
     _onClick,
   } = props;
 
@@ -40,6 +41,7 @@ const Grid = (props) => {
     space_between,
     space_around,
     center,
+    flex_end,
   };
   return (
     <React.Fragment>
@@ -67,6 +69,7 @@ Grid.defaultProps = {
   space_between: false,
   space_around: false,
   center: false,
+  flex_end: false,
   _onClick: () => {},
 };
 
@@ -79,12 +82,10 @@ const GridBox = styled.div`
   border-bottom: ${(props) =>
     props.border_bottom ? `${props.border_bottom};` : ""};
   overflow: ${(props) => (props.scroll ? `scroll;` : "")};
-
   // 위치
   position: ${(props) => (props.fixed ? `fixed;` : "")};
   top: ${(props) => (props.top ? `${props.top};` : "")};
   bottom: ${(props) => (props.bottom ? `${props.bottom};` : "")};
-
   ${(props) => (props.bg ? `background-color: ${props.bg};` : "")}
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
     ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
@@ -101,6 +102,10 @@ const GridBox = styled.div`
       ? `display: flex; align-items: center; justify-content: space-around;`
       : ""};
   ${(props) => (props.center ? `text-align: center;` : "")};
+  ${(props) =>
+    props.flex_end
+      ? `display: flex; align-items: center; justify-content: flex-end;`
+      : ""}
 `;
 
 export default Grid;

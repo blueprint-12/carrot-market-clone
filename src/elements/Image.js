@@ -21,7 +21,6 @@ Image.defaultProps = {
   width: "75%",
   height: "75%",
   src: false,
-  // size: "80%",
   half: false,
 };
 
@@ -30,7 +29,6 @@ const ImageBox = styled.img`
   height: ${(props) => props.height};
   border-radius: 10%;
   box-sizing: border-box;
-
   background-image: url("${(props) => props.src}");
   background-size: auto;
   margin: 0px;

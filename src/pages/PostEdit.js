@@ -1,6 +1,6 @@
 import React from "react";
 const PostEdit = () => {
-  return <div>joi</div>;
+  return <div></div>;
 };
 
 export default PostEdit;
