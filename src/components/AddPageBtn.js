@@ -21,7 +21,7 @@ const AddPageBtn = () => {
           width: "70px",
         }}
         onClick={() => {
-          navigate("/write");
+          navigate("/postwrite");
         }}
       >
         <AddIcon style={{ fontSize: "2rem" }} />

@@ -1,114 +1,195 @@
-// post.js
-
 import axios from "axios";
 
-// Actions
+
+const API = "http://3.39.253.203"
+
+const Token = localStorage.getItem("access_token")
+
+
+const initialState = {
+    list: [],
+  };
+
 const LOAD = "post/LOAD";
-const CREATE = "post/CREATE";
+const UPLOAD = "post/UPLOAD";
 const UPDATE = "post/UPDATE";
 const DELETE = "post/DELETE";
+const DETAIL = "post/DETAIL";
 
-//카테고리 별로 로드
-const LOADCATEGORY = "post/LOADCATEGORY";
 
-//Initial State(초기값)
-const initialState = {
-  list: [
-    {
-      id: 1,
-      title: "타이틀",
-      price: 10000,
-      image: "https://t1.daumcdn.net/cfile/blog/2455914A56ADB1E315",
-      fileName: "",
-      category: "",
-      timestamp: "00:00:00",
-    },
-    {
-      id: 2,
-      title: "타이틀2",
-      price: 10000,
-      image: "https://t1.daumcdn.net/cfile/blog/2455914A56ADB1E315",
-      fileName: "",
-      category: "",
-      timestamp: "00:00:00",
-    },
-    {
-      id: 3,
-      title: "타이틀3",
-      price: 10000,
-      image: "https://t1.daumcdn.net/cfile/blog/2455914A56ADB1E315",
-      fileName: "",
-      category: "",
-      timestamp: "00:00:00",
-    },
-    {
-      id: 4,
-      title: "타이틀4",
-      price: 10000,
-      image: "https://t1.daumcdn.net/cfile/blog/2455914A56ADB1E315",
-      fileName: "",
-      category: "",
-      timestamp: "00:00:00",
-    },
-    {
-      id: 5,
-      title: "타이틀5",
-      price: 10000,
-      image: "https://t1.daumcdn.net/cfile/blog/2455914A56ADB1E315",
-      fileName: "",
-      category: "",
-      timestamp: "00:00:00",
-    },
-  ],
-};
-
-// Action Creators(액션 생성자)
-export function loadPost(post_list) {
-  console.log(post_list);
-  return { type: LOAD, post_list };
+export function loadPost(load) {
+    return {type: LOAD, load};
 }
 
-export function createPost(post) {
-  return { type: CREATE, post };
+export function uploadPost(upload) {
+    return {type: UPLOAD, upload}
 }
 
-export function updatePost(post) {
-  return { type: UPDATE, post };
+export function updatePost(post_index, upload) {
+  return {type: UPDATE, post_index, upload}
 }
 
-export function deletePost(post) {
-  return { type: DELETE, post };
+export function deletePost(post_index) {
+  return { type: DELETE, post_index };
 }
 
-//middlewares (미들웨어)
-//리덕스 청크는 액션(객체)을 리턴하는 것이 아니라 함수를 리턴한다.
+export function loadDetail(detail_list) {
+  return { type: DETAIL, detail_list };
+}
 
-//loadPostDB(서버로부터 데이터 가져오는 함수)
-//리턴되는 함수는 인자로 dispatch를 받는데 그래야 어떤 액션을 일으킬 수 있기 떄문!
+
 export const loadPostDB = () => {
   return function (dispatch) {
-    axios.get(`서버주소`).then((res) => {
-      console.log(res.data);
-      dispatch(loadPost(res.data.postList));
+    axios.get(`${API}/api/post`,{
+     headers: { Authorization: `${Token}`}
+    }).then((response) => {
+      // console.log(response.data);
+      dispatch(loadPost(response.data.postList))
+      //console.log(dispatch(loadPost(response.data)));
     });
   };
 };
 
-//리듀서
-export default function reducer(state = initialState, action = {}) {
-  switch (action.type) {
-    case "post/LOAD": {
-      console.log(action.post_list);
-      return { list: action.post_list };
-    }
-    default:
-      return state;
+export const uploadPostDB =  (upload) => {
+    return function (dispatch)  {
+      const formData = new FormData();
+  
+      const write = {
+        title: upload.title,
+        category: "default",
+        
+        price: upload.price,
+        comment: upload.comment
+      };
+
+    formData.append(
+      "postDto",
+      new Blob([JSON.stringify(write, { contentType: "application/json" })], {
+        type: "application/json",
+      })
+    );
+
+      formData.append("file", upload.file);
+
+      axios
+        .post(`${API}/api/post`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `${Token}`,
+          },
+        })
+        .then((response) => {
+          // console.log(post);
+          dispatch(uploadPost(upload))
+          
+        })
+        .catch((error) => {
+          console.log("게시물 추가 에러" + error);
+        });
+    };
+  };
+
+
+  export const updatePostDB =  (postID, update) => {
+    return function (dispatch)  {
+      const formData = new FormData();
+      
+      const updateDoc = {
+        title: update.title,
+        category: "default",
+        price: update.price,
+        comment: update.comment
+      };
+
+    formData.append(
+      "postDto",
+      new Blob([JSON.stringify(updateDoc, { contentType: "application/json" })], {
+        type: "application/json",
+      })
+    );
+
+      formData.append("file", update.file);
+
+      axios
+        .put(`${API}/api/post/${postID}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `${Token}`,
+          },
+          //mode: "cors",
+        })
+        .then((response) => {
+          // console.log(post);
+          dispatch(uploadPost(postID, formData))
+          
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  };
+
+  export const deletePostDB = (postID) => {
+    return function (dispatch) {
+      axios
+        .delete(`${API}/api/post/${postID}`, {
+          headers: {
+            Authorization: `${Token}`,
+          },
+        })
+        .then((response) => {
+          dispatch(deletePost(postID));
+          
+        })
+        .catch((error) => {
+          console.log(postID);
+        });
+    };
+  };
+
+  export const loadDetailDB = (postID) => {
+    return function (dispatch) {
+      axios.get(`${API}/api/post/${postID}`,{
+        headers: { Authorization: `${Token}`}
+      }).then((response) => {
+        // console.log(response.data);
+        dispatch(loadPost(response.data.post))
+        //console.log(dispatch(loadPost(response.data)));
+      });
+    };
+  };
+
+
+
+
+  
+  export default function reducer(state = initialState, action = {}) {
+    switch (action.type) {
+      case LOAD: {
+        return { list: action.load };
+      }
+      case UPLOAD: {
+        const upload_post_list = [...state.list, action.upload];
+        return { list: upload_post_list };
+      }
+      case UPDATE: {
+        const update_post_list = state.list.filter((a, idx) => {
+          return parseInt(action.post_index) !== idx;
+        });
+        const new_list = [...update_post_list, action.upload];
+        return { list: new_list};
+      }
+      case DELETE: {
+        const delete_post_list = state.list.filter((a, idx) => {
+          return parseInt(action.post_index) !== idx;
+        });
+        return { list: delete_post_list };
+      }
+      case DETAIL: {
+        //console.log(action.post_list);
+        return { list: action.detail };
+      }
+      default:
+        return state;
   }
 }
-
-//미들웨어 (중간다리)
-// Reducer
-// export function getWidget() {
-//   return (dispatch) =>
-//     get("/widget").then((widget) => dispatch(updateWidget(widget)));
-// }

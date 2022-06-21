@@ -57,7 +57,7 @@ const PostWritePage = () => {
 };
 
 const WriteForm = styled.form`
-  width: 80vw;
+  width: 720px;
   height: 80vh;
   border: 3px solid lightgray;
   margin: 5% 10% 5%;
@@ -128,3 +128,5 @@ const Hr = styled.hr`
 `;
 
 export default PostWritePage;
+
+
