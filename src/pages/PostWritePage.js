@@ -5,9 +5,9 @@ const PostWritePage = () => {
   return (
     <WriteForm>
       <Nav>
-        <Button1>X</Button1>
+        <Button>X</Button>
         <div style={{ fontSize: "24px" }}>중고거래 글쓰기</div>
-        <Button1>완료</Button1>
+        <Button>완료</Button>
       </Nav>
       <Hr />
       <WriteBody>
@@ -73,7 +73,7 @@ const Nav = styled.div`
   justify-content: space-between;
 `;
 
-const Button1 = styled.button`
+const Button = styled.button`
   display: inline-block;
   margin: 3px 0 3px 0;
   border: none;
