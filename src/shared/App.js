@@ -9,7 +9,8 @@ import DetailPage from "../pages/DetailPage";
 import MainPage from "../pages/MainPage";
 import LoginPage from "../pages/LoginPage";
 import PostEditPage from "../pages/PostEditPage";
-import PostWritePage from "../pages/PostWritePage";
+// import PostWritePage from "../pages/PostWritePage";
+import PostWritePage2 from "../pages/PostWritePage2";
 import SignUpPage from "../pages/SignUpPage";
 
 import { useSelector, useDispatch } from "react-redux";
@@ -31,12 +32,11 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Header /> */}
       <Routes>
-        <Route path="/" exact element={<MainPage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/write" element={<PostWritePage />} />
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/postwrite" element={<PostWritePage2 />} />
         <Route path="/detail/:postId" element={<DetailPage />} />
         <Route path="/post/edit/:postId" element={<PostEditPage />} />
       </Routes>

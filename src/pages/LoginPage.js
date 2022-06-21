@@ -1,33 +1,62 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 const LoginPage = () => {
-  const navigate = useNavigate();
+  const loginHandler = () => {};
   return (
-    <>
-      <Text>로그인</Text>
-      <Input type="text" placeholder="아이디를 입력해주세요" />
-      <br />
-      <Input type="text" placeholder="비밀번호를 입력해주세요" />
-      <br />
-      <Button>로그인</Button>
-      <Button2
-        onClick={() => {
-          navigate("/signup");
-        }}
-      >
-        회원가입
-      </Button2>
-    </>
+    <Div>
+      <Div>
+        <ImgCont>
+          <Img src="https://news.nateimg.co.kr/orgImg/hi/2020/11/06/0d78bb2f-2075-4ed8-afe3-79df75f67cad.jpg"></Img>
+        </ImgCont>
+        <Title>로그인</Title>
+        <Input type="text" placeholder="아이디를 입력해주세요" />
+        <Input type="text" placeholder="비밀번호를 입력해주세요" />
+      </Div>
+      <Div2>
+        <Button onClick={loginHandler}>로그인</Button>
+        <Link to="/signup">
+          <Button2>회원가입</Button2>
+        </Link>
+      </Div2>
+    </Div>
   );
 };
-const Text = styled.div`
+
+const Div = styled.div`
+  width: 720px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+`;
+const Div2 = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+const ImgCont = styled.div`
+  width: 55%;
+  display: flex;
+  border-bottom: 1px solid #bbb;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Img = styled.img`
+  width: 120px;
+  height: 50px;
+`;
+const Title = styled.div`
   font-size: 30px;
-  font-weight: bold;
+  font-weight: 500;
   padding: 10px;
 `;
 const Input = styled.input`
-  width: 330px;
+  width: 40%;
   padding: 13px;
   margin: 10px;
   border: 1px solid #ddd;

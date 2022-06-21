@@ -18,7 +18,7 @@ const initialState = {
       id: 1,
       title: "타이틀",
       price: 10000,
-      image: "url",
+      image: "https://t1.daumcdn.net/cfile/blog/2455914A56ADB1E315",
       fileName: "",
       category: "",
       timestamp: "00:00:00",
@@ -27,7 +27,7 @@ const initialState = {
       id: 2,
       title: "타이틀2",
       price: 10000,
-      image: "url",
+      image: "https://t1.daumcdn.net/cfile/blog/2455914A56ADB1E315",
       fileName: "",
       category: "",
       timestamp: "00:00:00",
@@ -36,7 +36,7 @@ const initialState = {
       id: 3,
       title: "타이틀3",
       price: 10000,
-      image: "url",
+      image: "https://t1.daumcdn.net/cfile/blog/2455914A56ADB1E315",
       fileName: "",
       category: "",
       timestamp: "00:00:00",
@@ -45,7 +45,7 @@ const initialState = {
       id: 4,
       title: "타이틀4",
       price: 10000,
-      image: "url",
+      image: "https://t1.daumcdn.net/cfile/blog/2455914A56ADB1E315",
       fileName: "",
       category: "",
       timestamp: "00:00:00",
@@ -54,7 +54,7 @@ const initialState = {
       id: 5,
       title: "타이틀5",
       price: 10000,
-      image: "url",
+      image: "https://t1.daumcdn.net/cfile/blog/2455914A56ADB1E315",
       fileName: "",
       category: "",
       timestamp: "00:00:00",
@@ -76,13 +76,14 @@ export function updatePost(post) {
   return { type: UPDATE, post };
 }
 
-export function removePost(post) {
+export function deletePost(post) {
   return { type: DELETE, post };
 }
 
 //middlewares (미들웨어)
 //리덕스 청크는 액션(객체)을 리턴하는 것이 아니라 함수를 리턴한다.
-//로드 포스트 백엔드(서버로부터 데이터 가져오는 함수)
+
+//loadPostDB(서버로부터 데이터 가져오는 함수)
 //리턴되는 함수는 인자로 dispatch를 받는데 그래야 어떤 액션을 일으킬 수 있기 떄문!
 export const loadPostDB = () => {
   return function (dispatch) {
