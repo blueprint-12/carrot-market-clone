@@ -4,18 +4,19 @@ import { useNavigate } from "react-router-dom";
 import Grid from "../elements/Grid";
 import Text from "../elements/Text";
 import IconButton from "@mui/material/IconButton";
-import AddIcon from "@mui/icons-material/Add";
+import HomeIcon from "@mui/material/IconButton";
 
+import AddIcon from "@mui/icons-material/Add";
 import Fab from "@mui/material/Fab";
 
-import HomeIcon from "@mui/icons-material/Home";
-import ListAltIcon from "@mui/icons-material/ListAlt";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+// import ListAltIcon from "@mui/icons-material/ListAlt";
+// import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
 const BottomNavbar = (props) => {
   const navigate = useNavigate();
+
   return (
     <>
       <Grid
@@ -28,7 +29,7 @@ const BottomNavbar = (props) => {
         space_around
       >
         <Div>
-          <IconButton onClick={() => window.location.replace("/main")}>
+          <IconButton onClick={() => navigate("/")}>
             <HomeIcon sx={{ fontSize: 30 }}></HomeIcon>
           </IconButton>
           <Text>홈</Text>
@@ -51,7 +52,11 @@ const BottomNavbar = (props) => {
         </Div> */}
 
         <Div>
-          <IconButton>
+          <IconButton
+            onClick={() => {
+              navigate("/chat");
+            }}
+          >
             <ChatBubbleOutlineIcon
               sx={{ fontSize: 30 }}
             ></ChatBubbleOutlineIcon>

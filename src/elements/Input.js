@@ -1,11 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-<<<<<<< HEAD
-import { Text } from "./index";
-=======
 import Text from "./Text";
->>>>>>> d56869bf35980bf0cc9729effb220aea36d23c73
 
 const Input = (props) => {
   const {
@@ -44,7 +40,9 @@ const Input = (props) => {
 Input.defaultProps = {
   label: false,
   type: "text",
-  placeholder: "텍스트를 입력하시오.",
+
+  placeholder: "텍스트를 입력하세요.",
+
   _onChange: () => {},
   // width: "45%",
   // height: "4%",

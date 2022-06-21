@@ -23,7 +23,7 @@ import AddIcon from "@mui/icons-material/Add";
 
 import PostList from "../components/PostList";
 
-const Main = () => {
+const MainPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -86,4 +86,4 @@ const Main = () => {
 const Div = styled.div`
   max-width: 720px;
 `;
-export default Main;
+export default MainPage;
