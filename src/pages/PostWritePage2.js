@@ -1,19 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { uploadPostDB } from "../redux/modules/post";
 
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
-
 const PostWritePage2 = () => {
   const dispatch = useDispatch();
-    
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
 
   //이미지 미리보기
   const [image, setImage] = React.useState("");
@@ -31,7 +29,7 @@ const PostWritePage2 = () => {
     return new Promise((resolve) => {
       reader.onload = () => {
         setImage(reader.result);
-        resolve();
+        // resolve();
       };
     });
   };
@@ -63,15 +61,15 @@ const PostWritePage2 = () => {
     } else {
       dispatch(
         uploadPostDB({
-            title: title,
-            // category: category,
-            price: price,
-            comment: content,
-            file: imageUrl
+          title: title,
+          // category: category,
+          price: price,
+          comment: content,
+          file: imageUrl,
         })
-    );
-    //console.log(imageUrl)
-    navigate('/main')
+      );
+      //console.log(imageUrl)
+      navigate("/main");
     }
   };
   return (
@@ -143,7 +141,7 @@ const PostWritePage2 = () => {
             placeholder="₩"
             onChange={changePrice}
           />
-          <label htmlFor="price" />          
+          <label htmlFor="price" />
         </DetailCont>
 
         <label htmlFor="content" />

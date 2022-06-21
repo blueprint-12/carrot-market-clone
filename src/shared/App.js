@@ -36,10 +36,16 @@ function App() {
         <>
         <Route path="/main" element={<MainPage />} />
         <Route path="/postwrite" element={<PostWritePage2 />} />
+<<<<<<< HEAD
         <Route path="/detail/:id" element={<DetailPage />} />
         <Route path="/post/edit/:id" element={<PostEditPage />} />
         </>
 }
+=======
+        <Route path="/detail" element={<DetailPage />} />
+        {/* <Route path="/detail/:postId" element={<DetailPage />} /> */}
+        <Route path="/post/edit/:postId" element={<PostEditPage />} />
+>>>>>>> wonhee
       </Routes>
     </div>
   );
