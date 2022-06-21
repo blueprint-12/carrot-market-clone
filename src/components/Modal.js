@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 // import deletePostDB
 
 const Modal = (props) => {
   const { open, close, header } = props;
-  const history = useHistory();
+  const history = useNavigate();
   const dispatch = useDispatch();
   const postId = props.postId;
   const postID = parseInt(postId);

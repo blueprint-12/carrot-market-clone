@@ -21,6 +21,7 @@ const PostWritePage2 = () => {
     return new Promise((resolve) => {
       reader.onload = () => {
         setImage(reader.result);
+        // resolve();
       };
     });
   };

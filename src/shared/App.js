@@ -37,7 +37,8 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/main" element={<MainPage />} />
         <Route path="/postwrite" element={<PostWritePage2 />} />
-        <Route path="/detail/:postId" element={<DetailPage />} />
+        <Route path="/detail" element={<DetailPage />} />
+        {/* <Route path="/detail/:postId" element={<DetailPage />} /> */}
         <Route path="/post/edit/:postId" element={<PostEditPage />} />
       </Routes>
     </div>
