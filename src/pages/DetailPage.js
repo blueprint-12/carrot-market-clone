@@ -17,7 +17,7 @@ const DetailPage = () => {
   // //파라미터로 postID값 가져오기
   const {id} = useParams();
   const {title, price, image, category, timestamp, comment, nickname} = useSelector((state) => state.post.list);
-  const currentUser = useSelector((state) => state.user.nickname);
+  const currentUser = useSelector((state) => state?.user.nickname);
 
   
 
@@ -30,7 +30,7 @@ const DetailPage = () => {
 
   const deleteBtn = () => {
     dispatch(deletePostDB(id));
-    navigate('/main');
+    navigate(-1);
 };
   // const [modalOpen, setModalOpen] = React.useState(false);
   // const openModal = () => {
