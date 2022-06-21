@@ -1,6 +1,7 @@
-import React from "react";
+import React,{useEffect} from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
+import {Link} from "react-router-dom";
 
 import Image from "../elements/Image";
 import { loadPostDB } from "../redux/modules/post";
@@ -9,46 +10,50 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import IconButton from "@mui/material/IconButton";
 
 const PostList = (props) => {
-  const post_list = useSelector((state) => state.post?.list);
-  console.log(post_list);
-  //   const page = useSelector((state) => state.post?.page);
-
-  //   const is_login = useSelector((state) => state.user.is_login);
-
   const dispatch = useDispatch();
+  const postLoad = useSelector((state) => state.post?.list);
+  //const navigate = useNavigate();
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(loadPostDB());
-  });
+  },[]);
+
   return (
     <>
       <ListCont>
-        {post_list.map((p) => {
+        {postLoad?.length>0 && postLoad.map((p, idx) => {
           return (
-            <div key={p.postId} height="20%">
-              <Post key={p.postId}>
-                <ImageBox>
-                  <Image src={p.image}></Image>
-                </ImageBox>
-                <Contents>
-                  <ItemTitle>{p.title}</ItemTitle>
-                  <ItemTime>{p.timestamp}</ItemTime>
-                  <ItemPrice>{p.price} 원</ItemPrice>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      alignItems: "center",
-                    }}
-                  >
-                    <ItemLike>
-                      <IconButton>
-                        <FavoriteBorderOutlinedIcon fontSize="large" />
-                      </IconButton>
-                    </ItemLike>
-                  </div>
-                </Contents>
-              </Post>
+            <div key={idx} height="20%">
+            <Link to={`/detail/${p.id}`}>
+              <Post key={idx}>
+                  <ImageBox>
+                    <Image src={p.image} alt={p.id}></Image>
+                  </ImageBox>
+                  
+                  <Contents>
+                    <ItemTitle>{p.title}</ItemTitle>
+                    <ItemTime>{p.timestamp}</ItemTime>
+                    <ItemPrice>{p.price} 원</ItemPrice>
+                    <ItemTime>{p.category}</ItemTime>
+                    
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                        
+                      }}
+                    >
+                      <ItemLike>
+                        <IconButton>
+                          <FavoriteBorderOutlinedIcon fontSize="large" />
+                        </IconButton>
+                      </ItemLike>
+                    </div>
+                  </Contents>
+                  
+                </Post>
+              </Link>
             </div>
           );
         })}
