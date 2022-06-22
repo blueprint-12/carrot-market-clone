@@ -21,49 +21,11 @@ const PostList = (props) => {
   return (
     <>
       <ListCont>
-<<<<<<< HEAD
-        {postLoad?.length>0 && postLoad.map((p, idx) => {
-          return (
-            <div key={idx} height="20%">
-            <Link to={`/detail/${p.id}`} style={{textDecoration: "none", color:"black"}}>
-              <Post key={idx} >
-                  <ImageBox>
-                    <Image src={p.image} alt={p.id}></Image>
-                  </ImageBox>
-                  
-                  <Contents>
-                    <ItemTitle>{p.title}</ItemTitle>
-                    <ItemTime>{p.timestamp}</ItemTime>
-                    <ItemPrice>{p.price} 원</ItemPrice>
-                    <ItemTime>{p.category}</ItemTime>
-                    
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "flex-end",
-                        alignItems: "center",
-                        
-                      }}
-                    >
-                      <ItemLike>
-                        <IconButton>
-                          <FavoriteBorderOutlinedIcon fontSize="large" />
-                        </IconButton>
-                      </ItemLike>
-                    </div>
-                  </Contents>
-                  
-                </Post>
-              </Link>
-            </div>
-          );
-        })}
-=======
         {postLoad?.length > 0 &&
           postLoad.map((p, idx) => {
             return (
               <div key={idx} height="20%">
-                <Link to={`/detail/${p.id}`}>
+                <Link to={`/detail/${p.id}`} style={{color:"black", textDecoration:'none'}}>
                   <Post key={idx}>
                     <ImageBox>
                       <Image src={p.image} alt={p.id}></Image>
@@ -103,7 +65,6 @@ const PostList = (props) => {
               </div>
             );
           })}
->>>>>>> d2865b80f07e4cb7fc0dec116060f3c97b701f29
       </ListCont>
     </>
   );

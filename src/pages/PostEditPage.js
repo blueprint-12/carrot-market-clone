@@ -80,7 +80,7 @@ const PostEdit = () => {
         })
       );
       //console.log(imageUrl)
-      window.location.reload("/main");
+      window.location.href = "/main";
     }
   };
   return (
