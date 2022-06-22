@@ -169,14 +169,14 @@ export default function reducer(state = initialState, action = {}) {
       return { list: upload_post_list };
     }
     case UPDATE: {
-      const update_post_list = state.list.filter((a, idx) => {
+      const update_post_list = state.list.filter((idx) => {
         return parseInt(action.post_index) !== idx;
       });
       const new_list = [...update_post_list, action.upload];
       return { list: new_list };
     }
     case DELETE: {
-      const delete_post_list = state.list.filter((a, idx) => {
+      const delete_post_list = state.list.filter((idx) => {
         return parseInt(action.post_index) !== idx;
       });
       return { list: delete_post_list };
