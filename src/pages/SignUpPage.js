@@ -1,9 +1,119 @@
 import { style } from "@mui/system";
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
-
+import axios from "axios";
+import {idCheck, nickCheck, pwCheck} from "../shared/regex";
 import Image from "../elements/Image";
+import { current } from "@reduxjs/toolkit";
+import { useNavigate } from "react-router-dom";
+
+
 const SignUpPage = () => {
+  const navigate = useNavigate();
+
+  const [username, setUsername] = useState("");
+  const [nickname,setNickname] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
+
+  //아이디 체크 (공백이거나 형식에 부합x => 알림창)
+  const sameuserCheck = () => {
+    if (username === "" || idCheck(username) === false) {
+      return window.alert("아이디 양식을 지켜주세요!")
+    }
+    console.log(idCheck(username));
+
+    //axios로 아이디 정보 중복 확인 
+    //에러 => 아이디 중복이라는 메세지
+    axios({
+      method:"get",
+      url:`http://3.39.253.203/user/username/${username}`,
+    })
+    .then((response)=>{
+      console.log(response);
+      window.alert("아이디 확인이 완료됐습니다");
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  }
+
+
+  const samenickCheck = () => {
+    if (nickCheck === "" || nickCheck(nickname) === false) {
+      return alert("닉네임 양식을 지켜주세요!")
+    }
+
+    console.log(nickCheck(nickname));
+
+    //axios로 닉네임 정보 중복 확인
+    //에러 => '닉네임 중복'이라는 메세지
+    axios({
+      method:"get",
+      url:`http://3.39.253.203/user/nickname/${nickname}`
+    })
+    .then((response)=>{
+      console.log(response);
+      if(response) {
+        window.alert("닉네임 확인이 완료되었습니다!");
+      }
+    })
+    .catch((error)=>{
+      console.log(error.message);
+    })
+  }
+
+
+  const signupCheck = () => {
+    
+    if(
+      username === "" ||
+      nickname === "" ||
+      password === "" ||
+      passwordCheck === "" 
+  ) {
+      window.alert("모든 항목을 입력해주세요!");
+      return;
+  } //비밀번호와 비밀번호 확인이 다를 때
+  if (password !== passwordCheck) {
+      window.alert("비밀번호가 서로 다릅니다!");
+      return;
+  } //비밀번호 형식이 다를 떄
+  if (pwCheck(password) === false) {
+      window.alert("비밀번호는 4글자 이상 20글자 이하의 영문과 숫자 조합으로 입력해주세요!");
+      return;
+  }
+  console.log(pwCheck(password));
+
+  console.log(username, nickname, password, passwordCheck)
+
+  // //axios로 회원가입 정보 확인
+    axios({
+      method : "post",
+      url : `http://3.39.253.203/user/signup`,
+      data : {
+        username: username,
+        nickname: nickname,
+        password: password,
+        passwordCheck: passwordCheck,
+      }
+    })
+    .then((response)=>{
+      console.log(response);
+      if (response.data.response === true) {
+        window.alert("회원가입이 완료되었습니다!");
+        navigate("/")
+      } 
+    })
+    .catch((error)=>{
+      console.log(error.message);
+    })
+
+  }
+
+  
+  
+
   return (
     <AllCont>
       <ImgCont>
@@ -13,22 +123,37 @@ const SignUpPage = () => {
 
       <Content>
         <Div>
-          <Input type="text" placeholder="아이디를 입력해주세요" />
-          <Button>아이디 중복 체크</Button>
+          <Input onChange={(e)=>{
+            setUsername(e.target.value);
+          }}
+          type="text" 
+          placeholder="영문 + 숫자로 4~20글자 조합" />
+          <Button onClick={sameuserCheck}>아이디 중복 체크</Button>
         </Div>
+        
         <Div>
-          <Input type="text" placeholder="닉네임을 입력해주세요" />
-          <Button>닉네임 중복 체크</Button>
+          <Input onChange={(e)=>{
+            setNickname(e.target.value);
+          }}
+          type="text" 
+          placeholder="영문 + 숫자로 4~20글자 조합" />
+          <Button onClick={samenickCheck}>닉네임 중복 체크</Button>
         </Div>
-        <Input2 type="text" placeholder="설정할 비밀번호를 입력해주세요" />
-
-        <Input2 type="text" placeholder="비밀번호를 다시 입력해주세요" />
-
-        <Button2 style={{ margin: "10px 10px 15px 10px" }}>회원가입</Button2>
+        <Input2 onChange={(e)=>{
+          setPassword(e.target.value)
+        }}
+        type="text" 
+        placeholder="비밀번호는 영문 + 숫자로 4~20글자 조합" />
+        <Input2 onChange={(e)=>{
+          setPasswordCheck(e.target.value)
+        }}
+        type="text" 
+        placeholder="비밀번호를 다시 입력해주세요" />
+        <Button2 onClick={(signupCheck)} style={{ margin: "10px 10px 15px 10px" }}>회원가입</Button2>
       </Content>
     </AllCont>
   );
-};
+}
 
 const AllCont = styled.div`
   width: 720px;
@@ -121,4 +246,5 @@ const Button2 = styled.button`
     transition: 0.5s ease;
   }
 `;
+
 export default SignUpPage;

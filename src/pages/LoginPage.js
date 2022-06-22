@@ -1,9 +1,29 @@
 import React from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 import { Link } from "react-router-dom";
 const LoginPage = () => {
-  const loginHandler = () => {};
+  
+  const username = React.useRef();
+  const password = React.useRef();
+
+  // const loginHandler = () => {
+  //   axios({
+  //     method:"post",
+  //     url:`/user/login`,
+  //     data:{
+  //       username: username.current.value,
+  //       password: password.current.value
+  //     }
+  //   })
+  //   .then((response)=>{
+  //     if(response.data.result === true) {
+
+  //     }
+  //   })
+  // };
+
   return (
     <Div>
       <Div>
@@ -11,11 +31,11 @@ const LoginPage = () => {
           <Img src="https://news.nateimg.co.kr/orgImg/hi/2020/11/06/0d78bb2f-2075-4ed8-afe3-79df75f67cad.jpg"></Img>
         </ImgCont>
         <Title>로그인</Title>
-        <Input type="text" placeholder="아이디를 입력해주세요" />
-        <Input type="text" placeholder="비밀번호를 입력해주세요" />
+        <Input ref={username} type="text" placeholder="아이디를 입력해주세요" />
+        <Input ref={password} type="text" placeholder="비밀번호를 입력해주세요" />
       </Div>
       <Div2>
-        <Button onClick={loginHandler}>로그인</Button>
+        <Button>로그인</Button>
         <Link to="/signup">
           <Button2>회원가입</Button2>
         </Link>
