@@ -129,12 +129,12 @@ const PostWritePage2 = () => {
             placeholder="글 제목"
             onChange={changeTitle}
           />
-          {/* <Input
-            type="number"
+          {/* <Input as="select"
+            
             id="category"
             name="category"
             
-            onChange={changePrice}
+            //onChange={}
           /> */}
           <Input
             type="number"
@@ -145,7 +145,7 @@ const PostWritePage2 = () => {
           />
           <label htmlFor="price" />
         </DetailCont>
-
+                
         <label htmlFor="content" />
         <textarea
           name="content"
