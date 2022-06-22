@@ -1,19 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate,useParams } from "react-router-dom";
-import {deletePostDB} from "../redux/modules/post";
+import { useNavigate, useParams } from "react-router-dom";
+import { deletePostDB } from "../redux/modules/post";
 
 const Modal = (props) => {
   const { open, close, header } = props;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {id} = useParams();
-  
+  const { id } = useParams();
 
   const delete_post = () => {
     dispatch(deletePostDB(id));
-    navigate(-1);
+    window.location.href = "/main";
   };
   const update_post = () => {
     navigate(`/post/edit/${id}`);

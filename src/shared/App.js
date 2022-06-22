@@ -14,31 +14,32 @@ import PostWritePage2 from "../pages/PostWritePage2";
 import SignUpPage from "../pages/SignUpPage";
 
 import { useSelector } from "react-redux";
+import { getToken } from "./local_storage";
 
 function App() {
   // const dispatch = useDispatch();
   // const token = localStorage.getItem("token");
 
-  const Check = useSelector((state) => state.user.isLogin);
+  const Check = getToken();
+  // const Check = useSelector((state) => state.user.isLogin);
 
-  console.log(Check);
   return (
     <div className="App">
       <Routes>
-        {/* {!Check ? (
+        {!Check ? (
           <>
             <Route path="/" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
           </>
         ) : (
-          <> */}
+          <>
             <Route path="/main" element={<MainPage />} />
             <Route path="/postwrite" element={<PostWritePage2 />} />
 
             <Route path="/detail/:id" element={<DetailPage />} />
             <Route path="/post/edit/:id" element={<PostEditPage />} />
-          {/* </>
-        )} */}
+          </>
+        )}
       </Routes>
     </div>
   );

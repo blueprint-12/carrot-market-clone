@@ -6,7 +6,7 @@ import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
 import MenuOutlinedIcon from "@material-ui/icons/MenuOutlined";
 import LogoutTwoToneIcon from "@mui/icons-material/LogoutTwoTone";
 import IconButton from "@mui/material/IconButton";
-import {Logout} from "../redux/modules/user";
+import { Logout } from "../redux/modules/user";
 import { useDispatch } from "react-redux";
 
 const MainNav = (props) => {
@@ -14,12 +14,12 @@ const MainNav = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const OutToLogin = ()=>{
-    dispatch(Logout)
-    localStorage.clear()
-    alert("ㅂㅂ~")
-    navigate('/')
-  }
+  const OutToLogin = () => {
+    // dispatch(Logout)
+    localStorage.clear();
+    window.alert("로그아웃 완료");
+    window.location.href = "/";
+  };
 
   return (
     <NavCont>
@@ -38,9 +38,7 @@ const MainNav = (props) => {
         >
           <MenuOutlinedIcon style={{ fontSize: "2rem" }} />
         </IconButton>
-        <IconButton
-          onClick={OutToLogin}
-        >
+        <IconButton onClick={OutToLogin}>
           <LogoutTwoToneIcon style={{ fontSize: "2rem" }} />
         </IconButton>
       </div>

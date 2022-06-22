@@ -1,8 +1,9 @@
 import axios from "axios";
+import { getToken } from "../../shared/local_storage";
 
 const API = "http://3.39.253.203";
 
-const Token = localStorage.getItem("access_token");
+const Token = getToken();
 
 const initialState = {
   list: [],
