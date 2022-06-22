@@ -1,5 +1,6 @@
 import React ,{useRef} from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 import {useForm} from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +8,27 @@ import { useDispatch } from "react-redux";
 import {LoginSuccessDB} from "../redux/modules/user";
 
 const LoginPage = () => {
+<<<<<<< HEAD
+  
+  const username = React.useRef();
+  const password = React.useRef();
+
+  // const loginHandler = () => {
+  //   axios({
+  //     method:"post",
+  //     url:`/user/login`,
+  //     data:{
+  //       username: username.current.value,
+  //       password: password.current.value
+  //     }
+  //   })
+  //   .then((response)=>{
+  //     if(response.data.result === true) {
+
+  //     }
+  //   })
+  // };
+=======
   const dispatch = useDispatch();
 
   const {register, handleSubmit,watch} = useForm({mode:onchange});
@@ -28,6 +50,7 @@ const LoginPage = () => {
     Navigate('/main');
   };
   
+>>>>>>> 92e81a45795e4d773fba55269e2a17ace6e6e448
 
   return (
     <Div as ="form" className="loginForm" onSubmit={handleSubmit(onSubmit)}>
@@ -36,6 +59,13 @@ const LoginPage = () => {
           <Img src="https://news.nateimg.co.kr/orgImg/hi/2020/11/06/0d78bb2f-2075-4ed8-afe3-79df75f67cad.jpg"></Img>
         </ImgCont>
         <Title>로그인</Title>
+<<<<<<< HEAD
+        <Input ref={username} type="text" placeholder="아이디를 입력해주세요" />
+        <Input ref={password} type="text" placeholder="비밀번호를 입력해주세요" />
+      </Div>
+      <Div2>
+        <Button>로그인</Button>
+=======
         <Input type="text" placeholder="아이디를 입력해주세요" name="username"
         {...register("username",{required: true, minLength:4, maxLength:20})}
         />
@@ -44,6 +74,7 @@ const LoginPage = () => {
       </Div>
       <Div2>
         <Button type="submit" onClick={handleSubmit(onSubmit)}>로그인</Button>
+>>>>>>> 92e81a45795e4d773fba55269e2a17ace6e6e448
         <Link to="/signup">
           <Button2>회원가입</Button2>
         </Link>
