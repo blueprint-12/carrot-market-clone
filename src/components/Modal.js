@@ -1,21 +1,24 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router";
-// import deletePostDB
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate,useParams } from "react-router-dom";
+import {deletePostDB} from "../redux/modules/post";
 
 const Modal = (props) => {
   const { open, close, header } = props;
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const postId = props.postId;
-  const postID = parseInt(postId);
+
+  const {id} = useParams();
+  
 
   const delete_post = () => {
-    // dispatch(deletePostDB(postId));
+    dispatch(deletePostDB(id));
+    navigate(-1);
   };
-  const update_post = (postId) => {
-    history.push(`/post/edit/${postID}`);
+  const update_post = () => {
+    navigate(`/post/edit/${id}`);
   };
+  //console.log(useParams(id))
 
   return (
     // 모달이 열릴때 openModal 클래스가 생성된다.

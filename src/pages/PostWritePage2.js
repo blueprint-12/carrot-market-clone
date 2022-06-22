@@ -1,11 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { uploadPostDB } from "../redux/modules/post";
 
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
 const PostWritePage2 = () => {
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
   //이미지 미리보기
   const [image, setImage] = React.useState("");
   //서버에 보내는 이미지 url
@@ -14,6 +21,8 @@ const PostWritePage2 = () => {
   const [price, setPrice] = React.useState(0);
   const [content, setContent] = React.useState("");
 
+  // const [category, setCategory] = React.useState("");
+
   const reader = new FileReader();
 
   const encodeFileToBase64 = (fileBlob) => {
@@ -21,9 +30,14 @@ const PostWritePage2 = () => {
     return new Promise((resolve) => {
       reader.onload = () => {
         setImage(reader.result);
+        // resolve();
       };
     });
   };
+
+  // const changeCategory = (e) => {
+  //   setCategory(e.target.value);
+  // }
 
   const changeTitle = (e) => {
     setTitle(e.target.value);
@@ -41,12 +55,23 @@ const PostWritePage2 = () => {
     setImageUrl(e.target.files[0]);
   };
 
+  console.log(imageUrl);
   const submitHandler = () => {
     if (imageUrl === "" || title === "" || content === "" || price === "") {
       alert("모든 사항을 기입해주세요.");
       return;
     } else {
-      // dispatch(PostActions.addPost(imageUrl, title, content, price));
+      dispatch(
+        uploadPostDB({
+          title: title,
+          // category: category,
+          price: price,
+          comment: content,
+          file: imageUrl,
+        })
+      );
+      //console.log(imageUrl)
+      navigate("/main");
     }
   };
   return (
@@ -104,6 +129,13 @@ const PostWritePage2 = () => {
             placeholder="글 제목"
             onChange={changeTitle}
           />
+          {/* <Input
+            type="number"
+            id="category"
+            name="category"
+            
+            onChange={changePrice}
+          /> */}
           <Input
             type="number"
             id="price"

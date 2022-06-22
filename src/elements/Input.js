@@ -56,13 +56,11 @@ const ElInput = styled.input`
   border: 1px solid #ccc;
   border-radius: 3px;
   outline: none;
-
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   ${(props) => (props.display ? `display: ${props.display}` : "")};
   margin: ${(props) => (props.margin ? `${props.margin}` : "8px 8px")};
   padding: ${(props) => (props.padding ? `${props.padding};` : "16px 16px;")};
-
   &::placeholder {
     color: #bbb;
     font-size: 14px;
