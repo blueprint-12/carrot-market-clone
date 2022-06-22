@@ -32,23 +32,29 @@ const PostWritePage = () => {
         </ImageUpload>
         <DetailWrite>
           <Input1 height="10%" placeholder="글 제목" />
-          {/* <Input1 as="select" height="10%" name="category" id="category" style={{padding: "0 10px"}}>
+          {/* <Input1
+            as="select"
+            height="10%"
+            name="category"
+            id="category"
+            style={{ padding: "0 10px" }}
+          >
             <option value="none">카테고리 선택</option>
-                <option value="디지털기기">디지털기기</option>
-                <option value="생활가전">생활가전</option>
-                <option value="가구&인테리어">가구/인테리어</option>
-                <option value="유아동">유아동</option>
-                <option value="생활&가공식품">생활/가공식품</option>
-                <option value="유아도서">유아도서</option>
-                <option value="스포츠/레저">스포츠/레저</option>
-                <option value="여성패션">여성패션/잡화</option>
-                <option value="남성패션">남성패션/잡화</option>
-                <option value="게임&취미">게임/취미</option>
-                <option value="뷰티&미용">뷰티/미용</option>
-                <option value="반려동물용품">반려동물용품</option>
-                <option value="도서&티켓&음반">도서/티켓/음반</option>
-                <option value="기타">기타 중고물품</option>
-                <option value="삽니다">삽니다</option>
+            <option value="디지털기기">디지털기기</option>
+            <option value="생활가전">생활가전</option>
+            <option value="가구&인테리어">가구/인테리어</option>
+            <option value="유아동">유아동</option>
+            <option value="생활&가공식품">생활/가공식품</option>
+            <option value="유아도서">유아도서</option>
+            <option value="스포츠/레저">스포츠/레저</option>
+            <option value="여성패션">여성패션/잡화</option>
+            <option value="남성패션">남성패션/잡화</option>
+            <option value="게임&취미">게임/취미</option>
+            <option value="뷰티&미용">뷰티/미용</option>
+            <option value="반려동물용품">반려동물용품</option>
+            <option value="도서&티켓&음반">도서/티켓/음반</option>
+            <option value="기타">기타 중고물품</option>
+            <option value="삽니다">삽니다</option>
           </Input1> */}
           <Input1 height="10%" placeholder="판매 가격" />
         </DetailWrite>

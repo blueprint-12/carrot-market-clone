@@ -71,7 +71,7 @@ const PostWritePage2 = () => {
         })
       );
       //console.log(imageUrl)
-      navigate("/main");
+      window.location.href = "/main";
     }
   };
   return (
