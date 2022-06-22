@@ -1,18 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {useDispatch,useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { updatePostDB } from "../redux/modules/post";
 
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 
-
 const PostEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {id} = useParams();
+  const { id } = useParams();
 
   const Detail = useSelector((state) => state.post.list);
   console.log(Detail.image);
@@ -20,15 +19,15 @@ const PostEdit = () => {
   const defaultTitle = Detail.title;
   const defaultPrice = Detail.price;
   const defaultComment = Detail.comment;
-  
+
   //이미지 미리보기
   const [image, setImage] = React.useState(defaultImage);
   //서버에 보내는 이미지 url
-  
+
   const [imageUrl, setImageUrl] = React.useState("");
-  
+
   const [title, setTitle] = React.useState(defaultTitle);
-  
+
   const [price, setPrice] = React.useState(defaultPrice);
 
   const [content, setContent] = React.useState(defaultComment);
@@ -72,16 +71,16 @@ const PostEdit = () => {
       return;
     } else {
       dispatch(
-        updatePostDB(id,{
-            title: title,
-            
-            price: price,
-            comment: content,
-            file: imageUrl
+        updatePostDB(id, {
+          title: title,
+
+          price: price,
+          comment: content,
+          file: imageUrl,
         })
-    );
-    //console.log(imageUrl)
-    navigate('/main')
+      );
+      //console.log(imageUrl)
+      window.location.reload("/main");
     }
   };
   return (
@@ -155,7 +154,7 @@ const PostEdit = () => {
             onChange={changePrice}
             defaultValue={defaultPrice}
           />
-          <label htmlFor="price" />          
+          <label htmlFor="price" />
         </DetailCont>
 
         <label htmlFor="content" />

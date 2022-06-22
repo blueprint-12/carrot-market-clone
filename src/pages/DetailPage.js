@@ -15,15 +15,17 @@ import IconButton from "@mui/material/IconButton";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
+import { getNick } from "../shared/local_storage";
 
 const DetailPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // //파라미터로 postID값 가져오기
-  const {id} = useParams();
-  const {title, price, image, category, timestamp, comment, nickname} = useSelector((state) => state.post.list);
-  
-  const currentUser = useSelector((state) => state?.user.nickname);
+  const { id } = useParams();
+  const { title, price, image, category, timestamp, comment, nickname } =
+    useSelector((state) => state.post.list);
+
+  const currentUser = getNick();
   const sameUser = nickname === currentUser;
   //console.log(sameUser);
 
@@ -40,9 +42,6 @@ const DetailPage = () => {
     dispatch(loadDetailDB(id));
   }, []);
 
-  
-
-  
   // const [modalOpen, setModalOpen] = React.useState(false);
   // const openModal = () => {
   //   setModalOpen(true);
@@ -81,8 +80,28 @@ const DetailPage = () => {
           ></HomeIcon>
         </Div>
         {/* 모달 */}
-        { sameUser ?
-        <React.Fragment>
+        {sameUser ? (
+          <React.Fragment>
+            <Button
+              variant="text"
+              style={{
+                color: "lightgrey",
+                zIndex: "9999",
+                lineHeight: "3",
+                backgroundColor: "transparent",
+              }}
+              onClick={openModal}
+            >
+              ***
+            </Button>
+            <Modal
+              // postId={postId}
+              open={modalOpen}
+              close={closeModal}
+              header="수정 및 삭제하기"
+            ></Modal>
+          </React.Fragment>
+        ) : (
           <Button
             variant="text"
             style={{
@@ -91,31 +110,13 @@ const DetailPage = () => {
               lineHeight: "3",
               backgroundColor: "transparent",
             }}
-            onClick={openModal}
+            disabled
           >
             ***
           </Button>
-          <Modal
-            // postId={postId}
-            open={modalOpen}
-            close={closeModal}
-            header="수정 및 삭제하기"
-          ></Modal>
-        </React.Fragment>
-        : <Button
-        variant="text"
-        style={{
-          color: "lightgrey",
-          zIndex: "9999",
-          lineHeight: "3",
-          backgroundColor: "transparent",
-        }}
-        disabled
-      >
-        ***
-      </Button> }
+        )}
       </div>
-      
+
       <ImageWrap>
         <img
           src={image}
@@ -189,8 +190,6 @@ const DetailPage = () => {
 
 export default DetailPage;
 
-
-
 const DetailCont = styled.div`
   box-sizing: border-box;
   width: 720px;
@@ -198,10 +197,8 @@ const DetailCont = styled.div`
   background-color: #eee;
   border-radius: 10px;
   flex-direction: column;
-  
 `;
 const ImageWrap = styled.div`
-  
   top: 0;
   width: 100%;
   height: 50%;
