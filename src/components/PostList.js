@@ -25,7 +25,7 @@ const PostList = (props) => {
           postLoad.map((p, idx) => {
             return (
               <div key={idx} height="20%">
-                <Link to={`/detail/${p.id}`}>
+                <Link to={`/detail/${p.id}`} style={{color:"black", textDecoration:'none'}}>
                   <Post key={idx}>
                     <ImageBox>
                       <Image src={p.image} alt={p.id}></Image>
