@@ -30,8 +30,11 @@ const SignUpPage = () => {
       url:`http://3.39.253.203/user/username/${username}`,
     })
     .then((response)=>{
-      console.log(response);
-      window.alert("아이디 확인이 완료됐습니다");
+      console.log(response.data);
+      if(response.data.response){
+        alert(response.data.message);
+      }else{alert(response.data.message)};
+      
     })
     .catch((error)=>{
       console.log(error);
@@ -54,9 +57,9 @@ const SignUpPage = () => {
     })
     .then((response)=>{
       console.log(response);
-      if(response) {
-        window.alert("닉네임 확인이 완료되었습니다!");
-      }
+      if(response.data.response){
+        alert(response.data.message);
+      }else{alert(response.data.message)};
     })
     .catch((error)=>{
       console.log(error.message);
@@ -100,11 +103,12 @@ const SignUpPage = () => {
     })
     .then((response)=>{
       console.log(response);
-      if (response.data.response === true) {
-        window.alert("회원가입이 완료되었습니다!");
-        navigate("/")
+      if(response.data.response) 
+        {window.alert("회원가입이 완료되었습니다!"); navigate("/");}
+        else{ window.alert(response.data.response)}
+        
       } 
-    })
+    )
     .catch((error)=>{
       console.log(error.message);
     })
