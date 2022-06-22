@@ -10,15 +10,19 @@ import { deletePostDB, loadDetailDB } from "../redux/modules/post";
 import Modal from "../components/Modal";
 import "../elements/modal.css";
 
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import IconButton from "@mui/material/IconButton";
+
 const DetailPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   // //파라미터로 postID값 가져오기
-  const { id } = useParams();
-  const { title, price, image, category, timestamp, comment, nickname } =
-    useSelector((state) => state.post.list);
-  const currentUser = useSelector((state) => state.user.nickname);
+  const {id} = useParams();
+  const {title, price, image, category, timestamp, comment, nickname} = useSelector((state) => state.post.list);
+  
+  const currentUser = useSelector((state) => state?.user.nickname);
+  const sameUser = nickname === currentUser;
+  //console.log(sameUser);
 
   const [modalOpen, setModalOpen] = React.useState(false);
 
@@ -33,13 +37,9 @@ const DetailPage = () => {
     dispatch(loadDetailDB(id));
   }, []);
 
-  const sameUser = nickname === currentUser;
-  //console.log(sameUser);
+  
 
-  const deleteBtn = () => {
-    dispatch(deletePostDB(id));
-    navigate("/main");
-  };
+  
   // const [modalOpen, setModalOpen] = React.useState(false);
   // const openModal = () => {
   //   setModalOpen(true);
@@ -78,6 +78,7 @@ const DetailPage = () => {
           ></HomeIcon>
         </Div>
         {/* 모달 */}
+        { sameUser ?
         <React.Fragment>
           <Button
             variant="text"
@@ -98,7 +99,20 @@ const DetailPage = () => {
             header="수정 및 삭제하기"
           ></Modal>
         </React.Fragment>
+        : <Button
+        variant="text"
+        style={{
+          color: "lightgrey",
+          zIndex: "9999",
+          lineHeight: "3",
+          backgroundColor: "transparent",
+        }}
+        disabled
+      >
+        ***
+      </Button> }
       </div>
+      
       <ImageWrap>
         <img
           src={image}
@@ -111,6 +125,26 @@ const DetailPage = () => {
           }}
         />
       </ImageWrap>
+      <Div style={{height:"100%", top:"0"}}>
+      <ContentWrap >
+      
+      <ItemArea FS="1.3em">{nickname}</ItemArea>
+      <ItemArea sytle={{fontSize: "1.3em"}}>{title}</ItemArea>
+      <ItemArea style={{fontSize: "1em"}}>{category}&nbsp;&nbsp;&nbsp;{timestamp}&nbsp;&nbsp;올림</ItemArea>
+      <ItemArea FS="100px">{comment}</ItemArea>
+      </ContentWrap>
+      
+        <IconButton>
+          <FavoriteBorderOutlinedIcon fontSize="large" /> 0
+        </IconButton>
+        <Footer>
+        <ItemArea FS="100px">{price}
+        <button style={{fontSize:"15px", color: "white", backgroundColor:"#FF8A3D", width:"100px", height:"3em", borderRadius:"5px"
+      }}>채팅하기</button>
+        </ItemArea>
+      </Footer>
+        </Div>
+      
     </DetailCont>
   );
 };
@@ -136,15 +170,19 @@ const DetailPage = () => {
 
 export default DetailPage;
 
+
+
 const DetailCont = styled.div`
   box-sizing: border-box;
   width: 720px;
   height: 90vh;
   background-color: #eee;
   border-radius: 10px;
+  flex-direction: column;
+  
 `;
 const ImageWrap = styled.div`
-  position: relative;
+  
   top: 0;
   width: 100%;
   height: 50%;
@@ -152,3 +190,28 @@ const ImageWrap = styled.div`
 `;
 
 const Div = styled.div``;
+
+const ContentWrap = styled.div`
+  top: 0;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  
+  font-size: ${(props) => props.FS};
+  outLine: 1px solid red;
+  height: 20%;
+`
+
+const ItemArea = styled.div`
+  padding-top: 5px;
+  
+  width:100%;
+  
+`;
+
+const Footer = styled.div`
+  outline: 1px solid blue;
+  width:100%;
+  
+
+`
