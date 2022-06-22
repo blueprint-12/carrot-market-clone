@@ -15,31 +15,30 @@ import SignUpPage from "../pages/SignUpPage";
 
 import { useSelector } from "react-redux";
 
-
-
 function App() {
   // const dispatch = useDispatch();
   // const token = localStorage.getItem("token");
 
   const Check = useSelector((state) => state.user.isLogin);
-  
+
   console.log(Check);
   return (
     <div className="App">
       <Routes>
-        { !Check 
-        ? <>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
-        </>
-        :
-        <>
-        <Route path="/main" element={<MainPage />} />
-        <Route path="/postwrite" element={<PostWritePage2 />} />
-        <Route path="/detail/:id" element={<DetailPage />} />
-        <Route path="/post/edit/:id" element={<PostEditPage />} />
-        </>
-}
+        {!Check ? (
+          <>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+          </>
+        ) : (
+          <>
+            <Route path="/main" element={<MainPage />} />
+            <Route path="/postwrite" element={<PostWritePage2 />} />
+
+            <Route path="/detail/:id" element={<DetailPage />} />
+            <Route path="/post/edit/:id" element={<PostEditPage />} />
+          </>
+        )}
       </Routes>
     </div>
   );
