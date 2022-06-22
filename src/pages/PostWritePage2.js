@@ -20,6 +20,7 @@ const PostWritePage2 = () => {
   const [title, setTitle] = React.useState("");
   const [price, setPrice] = React.useState(0);
   const [content, setContent] = React.useState("");
+
   // const [category, setCategory] = React.useState("");
 
   const reader = new FileReader();
@@ -54,6 +55,7 @@ const PostWritePage2 = () => {
     setImageUrl(e.target.files[0]);
   };
 
+  console.log(imageUrl);
   const submitHandler = () => {
     if (imageUrl === "" || title === "" || content === "" || price === "") {
       alert("모든 사항을 기입해주세요.");
