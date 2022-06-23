@@ -21,7 +21,7 @@ const PostEdit = () => {
   const defaultComment = Detail.comment;
 
   //이미지 미리보기
-  const [image, setImage] = React.useState(defaultImage);
+  const [image, setImage] = React.useState("");
   //서버에 보내는 이미지 url
 
   const [imageUrl, setImageUrl] = React.useState("");
@@ -80,13 +80,13 @@ const PostEdit = () => {
         })
       );
       //console.log(imageUrl)
-      window.location.href = "/main";
+      window.location.href = "/";
     }
   };
   return (
     <PostCont>
       <HeaderNav>
-        <Link to="/main">
+        <Link to="/">
           <HeaderBtn>
             <ArrowBackOutlinedIcon sx={{ fontSize: "2rem" }} />
           </HeaderBtn>

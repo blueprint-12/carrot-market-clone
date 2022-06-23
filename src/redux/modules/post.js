@@ -160,6 +160,22 @@ export const loadDetailDB = (postID) => {
   };
 };
 
+export const increaseFeedHeart = (postID) => {
+  return function (dispatch) {
+    axios
+      .post(`${API}/api/post/${postID}`, {
+        headers: { Authorization: `${Token}` },
+      })
+      .then((res) => {
+        console.log(res);
+        // dispatch(loadPost())
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD: {

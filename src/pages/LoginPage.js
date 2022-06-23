@@ -13,15 +13,6 @@ const LoginPage = () => {
   const pw_ref = useRef("");
   console.log(id_ref.current.value, pw_ref.current.value);
 
-  // function idCheck(id) {
-  //   const regExp = /^[A-Za-z0-9]{4,20}$/;
-  //   console.log(id);
-  //   if (regExp.test(id)) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
   // 요청
   const loginHandler = async (e) => {
     e.preventDefault();
@@ -58,7 +49,7 @@ const LoginPage = () => {
           window.alert(res.data.message);
           setToken(TOKEN);
           setNick(NICK_NAME);
-          window.location.href = "/main";
+          window.location.href = "/";
         } else {
           window.alert(res.data.message);
           id_ref.current.value = "";

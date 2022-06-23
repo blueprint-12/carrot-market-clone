@@ -77,7 +77,7 @@ const PostWritePage2 = () => {
   return (
     <PostCont>
       <HeaderNav>
-        <Link to="/main">
+        <Link to="/">
           <HeaderBtn>
             <ArrowBackOutlinedIcon sx={{ fontSize: "2rem" }} />
           </HeaderBtn>
@@ -145,7 +145,7 @@ const PostWritePage2 = () => {
           />
           <label htmlFor="price" />
         </DetailCont>
-                
+
         <label htmlFor="content" />
         <textarea
           name="content"
