@@ -42,7 +42,7 @@ const BottomNavbar = (props) => {
       <Div>
         <IconButton
           onClick={() => {
-            navigate("/chat");
+            navigate("/");
           }}
         >
           <ChatBubbleOutlineIcon style={{ fontSize: "2rem" }} />
@@ -50,7 +50,7 @@ const BottomNavbar = (props) => {
         <span>채팅</span>
       </Div>
       <Div>
-        <IconButton onClick={() => window.location.replace("/mypage")}>
+        <IconButton onClick={() => window.location.replace("/")}>
           <PersonOutlineOutlinedIcon
             style={{ fontSize: "2rem" }}
           ></PersonOutlineOutlinedIcon>

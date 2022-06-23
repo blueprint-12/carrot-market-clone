@@ -2,9 +2,13 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+// import HeartButton from "../elements/HeartButton";
 
 import Image from "../elements/Image";
 import { loadPostDB } from "../redux/modules/post";
+import { getNick, getToken } from "../shared/local_storage";
+import { increaseFeedHeart } from "../redux/modules/post";
+import axios from "axios";
 
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import IconButton from "@mui/material/IconButton";
@@ -13,6 +17,14 @@ const PostList = (props) => {
   const dispatch = useDispatch();
   const postLoad = useSelector((state) => state.post?.list);
   //const navigate = useNavigate();
+
+  // const [like, setLike] = React.useState(false);
+  // const nickname = getNick();
+
+  // const toggleLike = async (id) => {
+  //   dispatch(increaseFeedHeart(id));
+  //   setLike(!like);
+  // };
 
   useEffect(() => {
     dispatch(loadPostDB());
@@ -25,7 +37,10 @@ const PostList = (props) => {
           postLoad.map((p, idx) => {
             return (
               <div key={idx} height="20%">
-                <Link to={`/detail/${p.id}`} style={{color:"black", textDecoration:'none'}}>
+                <Link
+                  to={`/detail/${p.id}`}
+                  style={{ color: "black", textDecoration: "none" }}
+                >
                   <Post key={idx}>
                     <ImageBox>
                       <Image src={p.image} alt={p.id}></Image>
@@ -43,7 +58,6 @@ const PostList = (props) => {
                         <span>{p.title}</span>
                         <span>{p.timestamp}</span>
                         <span>{p.price} 원</span>
-                        <span>{p.category}</span>
                       </div>
                       <div
                         style={{
@@ -58,6 +72,12 @@ const PostList = (props) => {
                             <FavoriteBorderOutlinedIcon fontSize="large" />
                           </IconButton>
                         </ItemLike>
+                        {/* <HeartButton
+                          like={p.likeCheck}
+                          onClick={() => {
+                            toggleLike(p.id);
+                          }}
+                        /> */}
                       </div>
                     </Contents>
                   </Post>

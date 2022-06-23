@@ -30,14 +30,15 @@ function App() {
           <>
             <Route path="/" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
+            <Route path="*" element={<LoginPage />} />
           </>
         ) : (
           <>
             <Route path="/main" element={<MainPage />} />
             <Route path="/postwrite" element={<PostWritePage2 />} />
-
             <Route path="/detail/:id" element={<DetailPage />} />
             <Route path="/post/edit/:id" element={<PostEditPage />} />
+            <Route path="*" element={<MainPage />} />
           </>
         )}
       </Routes>
